@@ -20,12 +20,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         NewGame();
+        UIManager.Instance.UpdateLives(lives);
+        UIManager.Instance.UpdateScore(score);
     }
 
     private void NewGame()
     {
         score = 0;
         lives = 3;
+
+        UIManager.Instance.UpdateLives(lives);
+        UIManager.Instance.UpdateScore(score);
 
         LoadLevel(1);
     }
@@ -61,6 +66,9 @@ public class GameManager : MonoBehaviour
     {
         this.lives--;
 
+        UIManager.Instance.UpdateLives(lives);
+
+
         if (this.lives > 0)
         {
             ResetLevel(); // Só reseta bola e paddle ao perder uma vida
@@ -74,6 +82,9 @@ public class GameManager : MonoBehaviour
     public void Hit(Blocks blocks)
     {
         score += blocks.points;
+
+        UIManager.Instance.UpdateScore(score);
+
         if (Cleared())
         {
             LoadLevel(this.level + 1);
