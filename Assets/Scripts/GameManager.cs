@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     private void NewGame()
     {
         score = 0;
-        lives = 3;
 
         UIManager.Instance.UpdateLives(lives);
         UIManager.Instance.UpdateScore(score);
@@ -37,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel(int level)
     {
+        lives = 3;
+        
         this.level = level;
 
         SceneManager.LoadScene("Level" + level);
